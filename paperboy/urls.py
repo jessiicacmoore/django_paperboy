@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from paperboy import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
+    path("", views.root, name="home"),
+    path("make_delivery/<int:id>", views.make_delivery, name="make_delivery"),
 ]

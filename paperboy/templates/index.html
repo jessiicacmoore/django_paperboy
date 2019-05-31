@@ -1,0 +1,52 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Paperboy</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+  <header class="header">
+    <h1>Paperboys</h1>
+  </header>
+
+
+  <section class="summary">
+    <p class="total-delivered">
+      Total papers delivered:
+      <span>{{ total_delivered }}</span>
+    </p>
+    <p class="total-delivered">
+      Total payment earned:
+      <span>{{ total_earned }}</span>
+    </p>
+  </section>
+
+  <section class="paperboys">
+    <ul class="paperboys__list">
+      {% for paperboy in paperboys %}
+      <li class="paperboy">
+        <h2 class="paperboy-name">
+          {{ paperboy.name }}
+        </h2>
+
+        <p class="paperboy-statement">
+          Hi, my name is {{ paperboy.name }}, I've delivered {{ paperboy.experience }} papers so far and earned ${{ paperboy.earnings }}
+        </p>
+
+        <form action="{% url 'make_delivery' id=paperboy.id %}" method="POST">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit">Deliver!</button>
+        </form>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+</body>
+</html>

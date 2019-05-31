@@ -1,0 +1,15 @@
+body {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.header {
+  background: #0984e3;
+  border-bottom: 1em solid #00cec9;
+}
+
+.header h1 {
+  color: #fff;
+  font-size: 3em;
+  line-height: 2;
+
+}
